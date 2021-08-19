@@ -44,7 +44,6 @@
 </nav>
 <br><br>
 
-<a href="${context}/views/user/register.jsp" class="btn btn-outline-success"><i class="fas fa-plus"></i> Agregar usuario</a>
 <table class="table">
     <thead class="table-dark">
     <tr>
@@ -59,7 +58,7 @@
     <c:forEach items="${ listUsers }" var="user" varStatus="status">
         <tr>
             <td>${ status.count }</td>
-            <td>${ user.idPerson.name } ${ user.idPerson.lastname }</td>
+            <td>${ user.nombre } ${ user.lastname }</td>
             <td>${ user.email }</td>
             <td>
                 <c:if test="${ user.status == 1 }">
@@ -73,7 +72,7 @@
                 <c:if test="${ user.status == 1 }">
                     <form action="${context}/ServletUser" method="POST" style="display: inline;">
                         <input type="hidden" name="action" value="getUserById">
-                        <input type="hidden" name="id" value="${ user.id }">
+                        <input type="hidden" name="id" value="${ user.idUser }">
                         <button type="submit" class="btn btn-outline-primary"><i class="fas fa-edit"></i> Modificar</button>
                     </form>
                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete"><i class="fas fa-trash"></i> Eliminar</button>

@@ -12,10 +12,6 @@ import java.io.IOException;
 
 import comite.vecinal.model.user.DaoUser;
 import comite.vecinal.model.user.BeanUser;
-import comite.vecinal.model.incidente.BeanIncidente;
-import comite.vecinal.model.departamento.BeanDepartamento;
-import comite.vecinal.model.colonia.BeanColonia;
-import comite.vecinal.model.userIncidente.BeanUserIncidente;
 
 @WebServlet(name = "ServletUser", value = "/ServletUser")
 public class ServletUser extends HttpServlet {

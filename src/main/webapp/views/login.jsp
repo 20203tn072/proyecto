@@ -18,7 +18,7 @@
     </head>
     <body background="${context}/assets/dist/img/fondo_login_des.png">
 
-    <form action="#" method="POST">
+    <form class="login-form" action="${context}login" method="POST">
 
         <div id="login-box" background="${context}/assets/dist/img/fondo_login.png">
             <h1>Iniciar Sesión</h1> <! - El título de Inicio de sesión ->

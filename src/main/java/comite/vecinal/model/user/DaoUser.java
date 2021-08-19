@@ -1,14 +1,11 @@
 package comite.vecinal.model.user;
 
-import comite.vecinal.model.colonia.BeanColonia;
 import comite.vecinal.model.municipio.BeanMunicipio;
 import comite.vecinal.model.role.BeanRole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import comite.vecinal.service.ConnectionMySQL;
-import comite.vecinal.model.departamento.BeanDepartamento;
-import comite.vecinal.model.incidente.BeanIncidente;
 
 
 
@@ -64,9 +61,9 @@ public class DaoUser {
     public BeanUser findById(long id){
         BeanUser user = null;
         try {
-            // SELECT * FROM users AS U INNER JOIN incidentes AS P ON U.idincidente = P.id INNER JOIN deps AS R ON U.iddep = R.id;
+            // SELECT * FROM usuario AS U INNER JOIN municipio AS M ON U.idMunicipio = M.IdMun INNER JOIN roles AS R ON U.idRoles = R.idRole;
             con = ConnectionMySQL.getConnection();
-            cstm = con.prepareCall("SELECT * FROM user AS U INNER JOIN incidente AS P ON U.idincidentes = P.idincidente INNER JOIN deps AS R ON U.iddeps = R.iddep WHERE U.idUser = ?");
+            cstm = con.prepareCall("SELECT * FROM usuario AS U INNER JOIN municipio AS M ON U.idMunicipio = M.IdMun INNER JOIN roles AS R ON U.idRoles = R.idRole WHERE U.idUser = ?");
             cstm.setLong(1, id);
             rs = cstm.executeQuery();
 

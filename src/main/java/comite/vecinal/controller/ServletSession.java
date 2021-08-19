@@ -27,7 +27,7 @@ public class ServletSession extends HttpServlet {
         session.invalidate();
 
         //Rediriguiendo a "/"
-        request.getRequestDispatcher("/").forward(request, response);
+        request.getRequestDispatcher("/views/user/inicio.jsp").forward(request, response);
     }
 
     @Override
