@@ -10,23 +10,23 @@
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <html>
 <head>
-    <title>Registrar Usuario | Enlace</title>
+    <title>Registrar Usuario</title>
     <link rel="stylesheet" href="${context}/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-light" style="background-color: #CC64F3;">
+<nav class="navbar navbar-light" style="background-color: white;">
     <a class="navbar-brand" href="#">
-        <font face="Arial Rounded MT" size="3">Comites Vecinales</font>
+        <b><font face="Arial Rounded MT" size="3">Comites Vecinales</font></b>
         <br>
-        <font face="Arial Rounded MT" size="3">del estado de Morelos</font>
+        <b><font face="Arial Rounded MT" size="3">del estado de Morelos</font></b>
     </a>
     <a class="navbar-brand" href="#">
         <img src="${context}/assets/dist/img/icon_gobierno.png" width="60" height="60" class="d-inline-block align-top" alt="">
     </a>
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="${context}/views/user/inicio.jsp">
         <img src="${context}/assets/dist/img/icon_inicio.png" width="60" height="60" class="d-inline-block align-top" alt="">
     </a>
     <a class="navbar-brand" href="#">
@@ -36,15 +36,18 @@
         <img src="${context}/assets/dist/img/morelos-utez.png" width="170" height="75" class="d-inline-block align-top" alt="">
     </a>
 </nav>
-<nav class="navbar navbar-light" style="background-color: #000000;" >
+<nav class="navbar navbar-light" style="background-color: hotpink;" >
     <a class="navbar-brand" href="#">
-        <font face="Arial Rounded MT" size="4" color="white">ADMINISTRADOR</font>
+        <b><font face="Arial Rounded MT" size="4" color="black">ADMINISTRADOR</font></b>
+    </a>
+    <a class="navbar-brand" href="${context}/views/user/inicio.jsp" style="text-align: right">
+        <b><font face="Arial Rounded MT" size="4" color="black">REGRESAR</font></b>
     </a>
 </nav>
 <br><br>
 
-<h1>Registrar Usuario | Enlace Municipio</h1>
-<form action="${context}/ServletUser" method="POST">
+<h1>Registrar Usuario</h1>
+<form action="${context}/createUser" method="POST">
     <input type="hidden" value="create" name="action">
     <label>Nombre(s):</label>
     <input class="form-control" type="text" name="name" />
@@ -62,11 +65,12 @@
     <select class="form-select" name="role">
         <option value="1">Enlace</option>
     </select>
+    <br>
     <label>Municipio:</label>
     <select class="form-select" name="municipio">
         <option value="1">Jiutepec</option>
     </select>
-
+    <br>
     <button type="button" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
     <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Agregar</button>
 </form>

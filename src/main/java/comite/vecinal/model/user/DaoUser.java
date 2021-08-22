@@ -58,13 +58,13 @@ public class DaoUser {
         return listUsers;
     }
 
-    public BeanUser findById(long id){
+    public BeanUser findById(long idUser){
         BeanUser user = null;
         try {
             // SELECT * FROM usuario AS U INNER JOIN municipio AS M ON U.idMunicipio = M.IdMun INNER JOIN roles AS R ON U.idRoles = R.idRole;
             con = ConnectionMySQL.getConnection();
             cstm = con.prepareCall("SELECT * FROM usuario AS U INNER JOIN municipio AS M ON U.idMunicipio = M.IdMun INNER JOIN roles AS R ON U.idRoles = R.idRole WHERE U.idUser = ?");
-            cstm.setLong(1, id);
+            cstm.setLong(1, idUser);
             rs = cstm.executeQuery();
 
             if(rs.next()){
@@ -145,7 +145,7 @@ public class DaoUser {
         boolean flag = false;
         try{
             con = ConnectionMySQL.getConnection();
-            cstm = con.prepareCall("{call sp_delete2(?)}");
+            cstm = con.prepareCall("{call sp_delete(?)}");
             cstm.setLong(1, idUser);
 
             flag = cstm.execute();

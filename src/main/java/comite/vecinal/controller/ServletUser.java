@@ -1,5 +1,6 @@
 package comite.vecinal.controller;
 
+import com.google.gson.Gson;
 import comite.vecinal.model.municipio.BeanMunicipio;
 import comite.vecinal.model.role.BeanRole;
 import org.slf4j.Logger;
@@ -9,13 +10,16 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import comite.vecinal.model.user.DaoUser;
 import comite.vecinal.model.user.BeanUser;
 
-@WebServlet(name = "ServletUser", value = "/ServletUser")
+@WebServlet(name = "ServletUser", value = {"/ServletUser", "/readUsers", "/createUser", "/getUserById", "/findById", "/updateUser", "/deleteUser" })
 public class ServletUser extends HttpServlet {
     Logger logger = LoggerFactory.getLogger(ServletUser.class);
+    BeanUser beanUser = new BeanUser();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,6 +29,7 @@ public class ServletUser extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Map map = new HashMap();
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
 
@@ -53,17 +58,32 @@ public class ServletUser extends HttpServlet {
 
             case "getUserById":
                 // do something
-                long id = Long.parseLong(request.getParameter("id"));
-                request.setAttribute("user", new DaoUser().findById(id));
+                long idUser = Long.parseLong(request.getParameter("id"));
+                request.setAttribute("user", new DaoUser().findById(idUser));
                 request.getRequestDispatcher("/views/user/update.jsp").forward(request, response);
+                break;
+            case "findById":
+                // do something
+                try {
+                    Gson gson = new Gson();
+                    long id5 = Long.parseLong(request.getParameter("id"));
+
+                    map.put("user", new DaoUser().findById(id5));
+
+                    response.setStatus(200);
+                }catch(Exception e){
+                    response.setStatus(400);
+                    logger.error("Usuario no encontrado.");
+                }
+                write(response, map);
                 break;
             case "update":
                 // do something
                 String name1 = request.getParameter("name") != null ? request.getParameter("name") : "";
                 String lastname1 = request.getParameter("lastname");
-                long id1 = Long.parseLong(request.getParameter("idUser"));
-                String email1 = request.getParameter("email");
+                long id1 = Long.parseLong(request.getParameter("id"));
                 String password1 = request.getParameter("password");
+                String email1 = request.getParameter("email");
                 int role1 = Integer.parseInt(request.getParameter("role"));
                 int municipio1 = Integer.parseInt(request.getParameter("municipio"));
 
@@ -80,19 +100,27 @@ public class ServletUser extends HttpServlet {
                 doGet(request, response);
                 break;
 
+
             case "delete":
-                if (new DaoUser().delete(Integer.parseInt(request.getParameter("idUser")))){
-                    request.setAttribute("message", "Se ha eliminado correctamente");
-                }else{
-                    logger.error("No se ha eliminado correctamente");
+                // do something
+                long id2 = Long.parseLong(request.getParameter("id"));
+                if(new DaoUser().delete(id2)){
+                    request.setAttribute("message", "Usuario eliminado correctamente");
+                } else {
+                    request.setAttribute("message", "Usuario no eliminado");
                 }
+                doGet(request, response);
+                break;
+            default:
+                // no supported
                 break;
 
-            default:
-                //no supported
-                request.getRequestDispatcher("/").forward(request, response);
-                break;
         }
     }
-}
+    private void write(HttpServletResponse response, Map<String, Object> map) throws IOException{
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(new Gson().toJson(map));
 
+    }
+}

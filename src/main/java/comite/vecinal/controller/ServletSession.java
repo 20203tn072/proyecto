@@ -20,14 +20,22 @@ public class ServletSession extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Obtener la sesion
-        HttpSession session = request.getSession();
+        //HttpSession session = request.getSession();
 
         //Matando la sesion
-        session.setAttribute("session", null);
-        session.invalidate();
+        //session.setAttribute("session", null);
+        //session.invalidate();
 
         //Rediriguiendo a "/"
-        request.getRequestDispatcher("/views/user/inicio.jsp").forward(request, response);
+        //request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("session") != null) {
+            request.setAttribute("listUsers", new DaoUser().findAll());
+            request.getRequestDispatcher("/views/user/users.jsp").forward(request, response);
+        } else{
+            request.getRequestDispatcher("/").forward(request, response);
+        }
     }
 
     @Override
@@ -35,9 +43,11 @@ public class ServletSession extends HttpServlet {
         HttpSession session = request.getSession();
 
         BeanUser beanUser = new BeanUser();
+        DaoUser daoUser = new DaoUser();
+
         beanUser.setEmail(request.getParameter("email"));
         beanUser.setPassword(request.getParameter("password"));
-        DaoUser daoUser = new DaoUser();
+
         boolean res = daoUser.createSession(
                 beanUser.getEmail(),
                 beanUser.getPassword()
@@ -45,7 +55,7 @@ public class ServletSession extends HttpServlet {
 
         if (res){
             session.setAttribute("session", beanUser);
-            request.getRequestDispatcher("views/inicio.jsp").forward(request, response);
+            request.getRequestDispatcher("views/user/inicio.jsp").forward(request, response);
         }else{
             request.getRequestDispatcher("/").forward(request, response);
         }

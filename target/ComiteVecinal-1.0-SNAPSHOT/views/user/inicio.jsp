@@ -19,31 +19,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-light" style="background-color: #CC64F3;">
+<nav class="navbar navbar-light" style="background-color: white;">
     <a class="navbar-brand" href="#">
         <b><font face="Arial Rounded MT" size="3">Comites Vecinales</font></b>
         <br>
         <b><font face="Arial Rounded MT" size="3">del estado de Morelos</font></b>
     </a>
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="https://www.gob.mx/">
         <img src="${context}/assets/dist/img/icon_gobierno.png" width="60" height="60" class="d-inline-block align-top" alt="">
     </a>
     <a class="navbar-brand" href="${context}/views/user/inicio.jsp">
         <img src="${context}/assets/dist/img/icon_inicio.png" width="60" height="60" class="d-inline-block align-top" alt="">
     </a>
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="https://morelos.gob.mx/">
         <img src="${context}/assets/dist/img/icon_morelos.png" width="60" height="60" class="d-inline-block align-top" alt="">
     </a>
     <a class="navbar-brand" href="#">
         <img src="${context}/assets/dist/img/morelos-utez.png" width="170" height="75" class="d-inline-block align-top" alt="">
     </a>
 </nav>
-<nav class="navbar navbar-light" style="background-color: #000000;" >
+<nav class="navbar navbar-light" style="background-color: hotpink;" >
     <a class="navbar-brand" href="#">
-        <font face="Arial Rounded MT" size="4" color="white">ADMINISTRADOR</font>
+        <b><font face="Arial Rounded MT" size="4" color="black">ADMINISTRADOR</font></b>
     </a>
-    <a class="navbar-brand" href="#">
-        <font face="Arial Rounded MT" size="4" color="white" style="text-align: right">Cerrar Sesión</font>
+    <a class="navbar-brand" href="${context}/logout">
+        <b><font face="Arial Rounded MT" size="4" color="black" style="text-align: right">CERRAR SESIÓN</font></b>
     </a>
 </nav>
 <br><br>
@@ -51,24 +51,13 @@
         <center>
             <div class="opciones">
                 <br>
+                <br>
+                <br>
+                <a href="${context}/readUsers">
+                    <img src="${context}/assets/dist/img/list-user.png" href="" width="150px" height="175px" hspace="20" vspace="20">
+                </a>
                 <a href="${context}/views/user/register.jsp">
-                    <img src="${context}/assets/dist/img/agregarusuario.png" href="${context}/views/user/register.jsp" width="150px" height="150px">
-                    Agregar Usuario
-                </a>
-                <a href="${context}/views/user/delite.jsp">
-                    <img src="${context}/assets/dist/img/eliminarusuario.png" href="${context}/views/user/delite.jsp" width="150px" height="150px">
-                    Eliminar Usuario
-                </a>
-                <br>
-                <br>
-                <br>
-                <a href="${context}/views/user/users.jsp">
-                    <img src="${context}/assets/dist/img/listarusuario.png" href="${context}/views/user/users.jsp" width="150px" height="150px">
-                    Listar Usuarios
-                </a>
-                <a href="${context}/views/user/update.jsp">
-                    <img src="${context}/assets/dist/img/agregarusuario.png.crdownload" href="${context}/views/user/update.jsp" width="150px" height="150px">
-                    Modificar Usuario
+                    <img src="${context}/assets/dist/img/add-user.png" href="" width="150px" height="175px" hspace="20" vspace="20">
                 </a>
             </div>
         </center>
