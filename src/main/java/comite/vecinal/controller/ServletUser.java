@@ -66,9 +66,9 @@ public class ServletUser extends HttpServlet {
                 // do something
                 try {
                     Gson gson = new Gson();
-                    long id5 = Long.parseLong(request.getParameter("id"));
+                    long id3 = Long.parseLong(request.getParameter("id"));
 
-                    map.put("user", new DaoUser().findById(id5));
+                    map.put("user", new DaoUser().findById(id3));
 
                     response.setStatus(200);
                 }catch(Exception e){

@@ -26,6 +26,5 @@ $('[id^="btn-details"]').click(function(){
         $('#lbl_municipio').text(user.idMunicipio.nombre);
         $('#lbl_role').text(user.idRole.nameRole);
         $('#lbl_email').text(user.email);
-        $('#lbl_password').text(user.password);
     });
 });

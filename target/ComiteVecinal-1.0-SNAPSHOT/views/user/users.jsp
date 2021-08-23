@@ -52,6 +52,7 @@
         <th>No.</th>
         <th>Nombre completo</th>
         <th>Correo</th>
+        <th>Municipio</th>
         <th>Estado</th>
         <th>Acciones</th>
     </tr>
@@ -62,6 +63,7 @@
             <td>${ status.count }</td>
             <td>${ user.nombre } ${ user.lastname }</td>
             <td>${ user.email }</td>
+            <td>${ user.idMunicipio.nombre }</td>
             <td>
                 <c:if test="${ user.status == 1 }">
                     <span class="badge rounded-pill bg-success">Activo</span>
@@ -77,10 +79,10 @@
                         <input type="hidden" name="id" value="${ user.idUser }">
                         <button type="submit" class="btn btn-outline-primary"><i class="fas fa-edit"></i> Modificar</button>
                     </form>
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete"><i class="fas fa-trash"></i> Eliminar</button>
+                    <button id="btn-delete-${ status.count }" data-code="${ user.idUser }" data-text="${ user.nombre } ${ user.lastname }" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete"><i class="fas fa-trash"></i> Eliminar</button>
                 </c:if>
                 <c:if test="${ user.status == 0 }">
-                    <button type="button" class="btn btn-outline-info"><i class="fas fa-info-circle"></i> Detalles</button>
+                    <button id="btn-details-${ status.count }" data-code="${ user.idUser }" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#details"><i class="fas fa-info-circle"></i> Detalles</button>
                 </c:if>
             </td>
         </tr>
@@ -135,8 +137,6 @@
                 <h5>Correo:</h5>
                 <label id="lbl_email"></label>
                 <br>
-                <h5>Contraseña:</h5>
-                <label id="lbl_password"></label>
 
             </div>
             <div class="modal-footer">
