@@ -1,7 +1,7 @@
 package comite.vecinal.model.incidente;
 
 import comite.vecinal.model.departamento.BeanDepartamento;
-import comite.vecinal.model.userEnlace.BeanEnlace;
+import comite.vecinal.model.user.BeanUser;
 
 public class BeanIncidente {
     private long idIncidente;
@@ -11,12 +11,12 @@ public class BeanIncidente {
     private String fechaFin;
     private int status;
     private BeanDepartamento idDepartamento;
-    private BeanEnlace idEnlace;
+    private BeanUser idUser;
 
     public BeanIncidente() {
     }
 
-    public BeanIncidente(long idIncidente, String nombre, String descripcion, String fechaInicio, String fechaFin, int status, BeanDepartamento idDepartamento, BeanEnlace idEnlace) {
+    public BeanIncidente(long idIncidente, String nombre, String descripcion, String fechaInicio, String fechaFin, int status, BeanDepartamento idDepartamento, BeanUser idUser) {
         this.idIncidente = idIncidente;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -24,7 +24,7 @@ public class BeanIncidente {
         this.fechaFin = fechaFin;
         this.status = status;
         this.idDepartamento = idDepartamento;
-        this.idEnlace = idEnlace;
+        this.idUser = idUser;
     }
 
     public long getIdIncidente() {
@@ -83,11 +83,11 @@ public class BeanIncidente {
         this.idDepartamento = idDepartamento;
     }
 
-    public BeanEnlace getIdEnlace() {
-        return idEnlace;
+    public BeanUser getIdEnlace() {
+        return idUser;
     }
 
-    public void setIdEnlace(BeanEnlace idEnlace) {
-        this.idEnlace = idEnlace;
+    public void setIdEnlace(BeanUser idUser) {
+        this.idUser = idUser;
     }
 }
